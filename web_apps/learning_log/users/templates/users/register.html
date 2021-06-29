@@ -1,0 +1,19 @@
+{% extends 'learning_logs/base.html' %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <h1>Register your account</h1>
+{% endblock header %}
+
+{% block content %}
+<form action="{% url 'users:register' %}" method="POST" class="form">
+    {% csrf_token %} <!--cross site request forgery token-->
+    {% bootstrap_form form %} <!--we pass in form to bootstrap_form with has our styling-->
+    
+    {% buttons %}
+        <button name='register' class="btn btn-primary">register</button>
+    {% endbuttons %}
+    <!-- <input type='hidden' name='text' value="{% url 'learning_logs:index' %}"> -->
+    <!-- Idk why this is here. it sends you back regardless. -->
+</form>
+{% endblock content %}

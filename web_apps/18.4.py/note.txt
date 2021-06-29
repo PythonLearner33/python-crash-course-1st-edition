@@ -1,0 +1,20 @@
+from pizzas.models import Pizza # Import model
+for pizza in Pizza.objects.all(): # Get all pizza names
+    print(f'Pizza: {pizza}') # Print pizza name
+    pizza_object = Pizza.objects.get(id=pizza.id) # Get Pizza object
+    topping_object = pizza_object.topping_set.all() # Get topping set of individual pizza object
+    for topping in topping_object: # Get individual strings of toppings
+        print(topping) # Print topping
+    print('\n')
+
+I used this above to print my Pizza and Ingredients. hopefully it isn't too bad, i didn't read the documentation.
+
+from pizzas.models import Pizza # Import model
+for pizza in Pizza.objects.all(): # Get all pizza objects
+    print(f'Pizza: {pizza}') # Print pizza name
+    toppings = pizza.topping_set.all() # Get topping set of individual pizza object
+    for topping in toppings: # Get all individual toppings for current pizza
+        print(topping) # Print topping
+    print('\n')
+
+second version is better

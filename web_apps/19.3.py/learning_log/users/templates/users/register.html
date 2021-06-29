@@ -1,0 +1,11 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+<form action="{% url 'users:register' %}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button name='register'>register</button>
+    <!-- <input type='hidden' name='text' value="{% url 'learning_logs:index' %}"> -->
+    <!-- Idk why this is here. it sends you back regardless. -->
+</form>
+{% endblock content %}

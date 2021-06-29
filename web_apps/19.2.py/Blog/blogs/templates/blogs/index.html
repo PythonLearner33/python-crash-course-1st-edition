@@ -1,0 +1,18 @@
+{% extends 'blogs/base.html' %} <!--Inherits from base.html-->
+
+{% block content %}
+
+{% for blog in blogs %}
+    <ul>
+        <li>
+            <p> <!-- Allows for one continuous line of text.-->
+                <a href="{% url 'blogs:blog_post' blog.id %}">{{blog}}</a> <!--Returns the __str__ value. Aka, the title.-->
+                // {{blog.date}} //
+                <a href="{% url 'blogs:edit_post' blog.id %}">Edit</a>
+            </p> 
+        </li> 
+    </ul>
+{% empty %}
+    <p>There are no blogs posted.</p>
+{% endfor %}
+{% endblock content %}

@@ -1,0 +1,11 @@
+{% extends 'blogs/base.html' %}
+
+{% block content %}
+    <p>Date: {{blog.date}}</p>
+    <p>Title: {{blog.title}}</p>
+    <p>Post: {{blog.text}}</p>
+    <hr>
+    {% if blog.owner == request.user %}
+        <a href="{% url 'blogs:edit_post' blog.id %}">Edit</a>
+    {% endif %}
+{% endblock content %}

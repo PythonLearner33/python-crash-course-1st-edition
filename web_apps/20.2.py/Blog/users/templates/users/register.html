@@ -1,0 +1,16 @@
+{% extends 'blogs/base.html' %}
+{%load bootstrap3%}
+
+{% block header %}
+<div class="container-fluid">
+    <h1>Register your account</h1>
+</div>
+{% endblock header %}
+
+{% block content %}
+    <form method="POST" action="{% url 'users:register' %}" class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button name='register' class="btn btn-primary">register</button>
+    </form>
+{% endblock content %}

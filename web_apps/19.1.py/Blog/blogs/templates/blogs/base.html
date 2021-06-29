@@ -1,0 +1,10 @@
+<p>
+    <a href="{% url 'blogs:index' %}">Blog Homepage</a><!--Creates URL pattern using URL name variable in urls.py -->
+    - <a href="{% url 'blogs:create_post' %}">Create New Post</a>
+</p>
+<p>-Create your own blog posts!</p>
+<p>-View blog posts from around the world!</p>
+<hr>
+
+{% block content %}
+{% endblock content %}

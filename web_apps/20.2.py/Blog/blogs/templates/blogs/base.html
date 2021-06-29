@@ -1,0 +1,62 @@
+{% load bootstrap3 %} <!--MAKE SURE YOU ARE USING THE BOOTSTRAP3 DOCS, NOT BOOTSTRAP4, etc.-->
+<!DOCTYPE html>
+<html lang='en'>
+
+    <head>
+        <title>Bathroom Stall</title>
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+
+                    <!--Blog Homepage link-->
+                    <a class="navbar-brand" href="{% url 'blogs:index' %}">Bathroom Stall</a>
+                    
+                    <!--Make button loading only when webpage is collapsed-->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <!--When webpage collapses, make unordered list hide inside button.-->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    
+                    <!--Otherwise, load as normal in normal webpage.-->
+                    <ul class="nav navbar-nav navbar-right">
+                        {% if user.is_authenticated %}
+                            <li><p class="navbar-text">Hello, {{user}}</p></li>
+                            <li><a href="{% url 'blogs:create_post' %}">create post</a></li>
+                            <li><a href="{% url 'users:log_out' %}">log out</a></li>
+                        {% else %}
+                            <li><a href="{% url 'users:log_in' %}">login</a></li>
+                            <li><a href="{% url 'users:register' %}">register</a></li>
+                        {% endif %}
+                    </ul>
+
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <!--block header-->
+        <div class="page-header">
+            <div class="container-fluid">
+                {% block header %}
+                {% endblock header %}
+            </div>
+        </div>
+
+        <!--block content-->
+        <div class="container-fluid">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </body>
+</html>

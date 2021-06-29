@@ -1,0 +1,17 @@
+{% extends 'blogs/base.html' %}
+{% load bootstrap3 %}
+
+{% block header %}
+    <div class="container-fluid">
+        <h1>LOG IN BITCH</h1>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    <form method="POST" action="{% url 'users:log_in' %}" class="form">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button name='log_in' class="btn btn-primary">log in</button>
+        <input type="hidden" name="next" value="{% url 'blogs:index' %}"> <!-- We use this because it redirects to /accounts/profile if we dont-->
+    </form>
+{% endblock content %}

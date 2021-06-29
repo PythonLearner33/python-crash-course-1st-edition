@@ -1,0 +1,10 @@
+{% extends 'blogs/index.html' %}
+
+{% block content %}
+<form method="POST" action="{% url 'users:log_in' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name='log_in'>log in</button>
+    <input type="hidden" name="next" value="{% url 'blogs:index' %}"> <!-- We use this because it redirects to /accounts/profile if we dont-->
+</form>
+{% endblock content %}

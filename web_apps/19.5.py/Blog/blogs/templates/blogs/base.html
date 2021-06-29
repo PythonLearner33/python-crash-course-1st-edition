@@ -1,0 +1,26 @@
+<!DOCTYPE "HTML">
+    <html>
+        <head>
+            <title>Blog</title>
+        </head>
+        <body>
+                    <a ref="{% url 'blogs:index' %}">Blog Homepage</a>
+                        <a  href="{% url 'blogs:create_post' %}">Create New Post</a>
+                        {% if user.is_authenticated %}
+                            Hello, {{user.username}}
+                            <a  href="{% url 'users:log_out' %}">log out</a>
+                        {% else %}
+                            <a href="{% url 'users:log_in' %}">log in</a>
+                            <a href="{% url 'users:register' %}">register</a>
+                        {% endif %}
+
+                <p>-Create your own blog posts!</p>
+                <p>-View blog posts from around the world!</p>
+
+                {% block content %}
+                {% endblock content %}
+
+
+        </body>
+    </html>
+</DOCTYPE>

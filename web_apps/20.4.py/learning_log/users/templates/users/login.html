@@ -1,0 +1,25 @@
+{% extends "learning_logs/base.html" %}
+{% load bootstrap3 %} <!--Load collection of template tags-->
+
+{% block header %}
+    <h2>Log in to your account</h2>
+{% endblock header %}
+
+
+{% block content %}
+
+<!-- {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+{% endif %} --> <!-- Not necessary; django-bootstrap3 handles form errors automatically-->
+
+<form method="POST" action = "{% url 'users:login' %}" class="form">
+    {% csrf_token %}
+    <!-- {{form.as_p}} -->
+    {% bootstrap_form form %} <!--form from context is being passed in-->
+    {% buttons %} <!-- adds bootstrap styling to buttons; if removed nothing happens to button below idk why-->
+        <button name='submit' class="btn btn-primary">log in</button>
+    {% endbuttons %}
+    <input type='hidden' name='next' value="{% url 'learning_logs:index' %}"/>
+
+</form>
+{% endblock content %}

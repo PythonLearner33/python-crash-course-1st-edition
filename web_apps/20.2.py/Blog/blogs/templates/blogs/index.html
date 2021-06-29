@@ -1,0 +1,47 @@
+{% extends 'blogs/base.html' %} <!--Inherits from base.html-->
+{% load bootstrap3 %}
+{% load static %} <!--Tag allows for dynamic name changes-->
+
+{% block header %}
+
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <div class="container-fluid">
+                <img class="nav navbar-right" src="{% static 'bathroomstall.jpg' %}" alt="bathroomstall.jpg" >
+                <h1>Bathroom Stall </h1>
+                <h2>-View posts from around the world!</h2>
+                <h2>-Post whatever!</h2>
+            </div>
+        </div>
+    </div>
+
+{% endblock header %}
+
+
+{% block content %}
+    
+    {% for blog in blogs %}
+        <div class="container-fluid">
+            <div class="panel panel-default">
+                
+                <div class="panel-heading">
+                    {% if request.user == blog.owner %}
+                        <h2>{{blog.title}} <small>by {{blog.owner}} // {{blog.date}} 
+                            <a href="{% url 'blogs:edit_post' blog.id %}">Edit</a></small></h2>
+                    {% else %}
+                        <h2>{{blog.title}} <small>by {{blog.owner}} // {{blog.date}}</small></h2>
+                    {% endif %}
+                </div>
+
+                <div class="panel-body">
+                {{blog.text|linebreaks}}
+                </div>
+
+            </div>
+        </div>
+            
+    {% empty %}
+        <p>There are no blogs posted.</p>
+    {% endfor %}
+
+{% endblock content %}
